@@ -15,3 +15,10 @@ const databaseUrl = "workout";
 const collections = ["workoutSeed"];
 
 const db = mongojs(databaseUrl, collections);
+
+require("./routes/html-routes.js")(app);
+
+// Listen on port 3000
+app.listen(3000, () => {
+    console.log("App running on port 3000!");
+  });
