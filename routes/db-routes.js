@@ -34,13 +34,17 @@ module.exports = function (app) {
     .catch((err) => {
       console.log(err);
       res.status(404);
-    })
+    });
   });
 
-  app.get("/api/workouts/range", (_req, res) => {
-    db.Workout.find({}).catch((err) => {
-      res.status(404).json(err);
+  app.get("/api/workouts/range", (req, res) => {
+    db.Workout.find({})
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(404);
     });
-    res.json(workout);
   });
 };
