@@ -1,9 +1,15 @@
+const db = require("../models");
+
 module.exports = function (app) {
-  app.get("/api/workouts", (_req, res) => {
-    db.workoutSeed.find({}).catch((err) => {
-      res.status(404).json(err);
-    });
-    res.json(workout);
+  app.get("/api/workouts", (req, res) => {
+    db.Workout.find({})
+      .then((data) => {
+        res.json(data);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.json(404);
+      });
   });
 
   app.put("/api/workouts/:id", (req, res) => {
